@@ -11,7 +11,7 @@ exclude-labels:
   - 'skip-changelog'
 change-title-escapes: '\<*_&'
 template: |
-```
+  ```
                                                               
                                                               
                                                               
