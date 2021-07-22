@@ -1,2 +1,2 @@
 # fusion
-Audio streams mixing
+Audio streaming with Liquidsoap 🧼
