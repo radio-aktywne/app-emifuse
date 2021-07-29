@@ -1,6 +1,6 @@
 FROM savonet/liquidsoap-alpine:main
 
-COPY src/radio.liq /tmp
+COPY ./fusion/src/radio.liq /tmp
 
 WORKDIR /tmp
 
