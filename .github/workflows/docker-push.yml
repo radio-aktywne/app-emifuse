@@ -1,28 +1,16 @@
-name: Testing docker build
+name: Publish a docker image
 
 on:
-  push:
-    # trigger only on main branch
-    branches:
-      - main
-    # trigger only on changes to the following files
-    paths:
-      - "fusion/src/**"
-      - "Dockerfile"
-      - ".github/workflows/docker-build.yml"
-  pull_request:
-    # trigger only on main branch
-    branches:
-      - main
-    # trigger only on changes to the following files
-    paths:
-      - "fusion/src/**"
-      - "Dockerfile"
-      - ".github/workflows/docker-build.yml"
+  release:
+    types:
+      - published
 
 jobs:
-  docker-build:
+  docker-push:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read
+      packages: write
     steps:
       - # get repository code
         name: Checkout
@@ -34,12 +22,18 @@ jobs:
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx
-      - name: Build the image
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: false
-          tags: fusion:latest
+          push: true
+          tags: ghcr.io/radio-aktywne/fusion:latest,ghcr.io/radio-aktywne/fusion:${{ github.event.release.tag_name }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
       - # Temp fix
