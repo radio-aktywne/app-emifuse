@@ -10,7 +10,7 @@ ENV DECAY_HOST="decay" \
     DECAY_PASSWORD="hackme" \
     DECAY_MOUNT="radio.mp3"
 
-# live input on port 8000
-EXPOSE 8000/udp
+# live input on port 9000
+EXPOSE 9000/udp
 
 ENTRYPOINT ["liquidsoap", "radio.liq"]
