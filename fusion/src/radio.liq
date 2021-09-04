@@ -4,6 +4,7 @@ RESOURCE_PATH = "resources"
 FALLBACK_PATH = "audio/fallback.mp3"
 
 LIVE_PORT = 8000
+# ogg supports embedding metadata in stream
 LIVE_CONTENT_TYPE = "audio/ogg"
 
 TYPE_KEY = "type"
