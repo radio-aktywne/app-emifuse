@@ -2,12 +2,18 @@
 
 RESOURCE_PATH = "resources"
 LIVE_PORT = 8000
+LIVE_CONTENT_TYPE = "audio/ogg"
 
 TYPE_LIVE = "live"
 TYPE_PLAYLIST = "playlist"
 
 SOURCE_CROSS_DURATION = 5.
 LIVE_BUFFER_LENGTH = 2. * SOURCE_CROSS_DURATION
+
+### settings
+
+# set ogg decoder priority higher than ffmpeg, see: https://github.com/savonet/liquidsoap/issues/1864#issuecomment-912957717
+settings.decoder.priorities.ogg.set(15)
 
 ### utils
 
@@ -64,7 +70,7 @@ music_file = resource("audio/fallback.mp3")
 music = single(music_file)
 music = map_metadata(tag_type(TYPE_PLAYLIST), music)
 
-live = input.srt(port=LIVE_PORT)
+live = input.srt(port=LIVE_PORT, content_type=LIVE_CONTENT_TYPE)
 live = map_metadata(tag_type(TYPE_LIVE), live)
 live = buffer(buffer=LIVE_BUFFER_LENGTH, fallible=true, live)
 
