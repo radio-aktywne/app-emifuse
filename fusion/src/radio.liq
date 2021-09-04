@@ -1,9 +1,12 @@
 ### constants
 
 RESOURCE_PATH = "resources"
+FALLBACK_PATH = "audio/fallback.mp3"
+
 LIVE_PORT = 8000
 LIVE_CONTENT_TYPE = "audio/ogg"
 
+TYPE_KEY = "type"
 TYPE_LIVE = "live"
 TYPE_PLAYLIST = "playlist"
 
@@ -26,7 +29,7 @@ def resource(path) =
 end
 
 def tag_type(type, _) =
-  [("type", type)]
+  [(TYPE_KEY, type)]
 end
 
 ### transitions
@@ -47,9 +50,9 @@ end
 
 # solution from https://github.com/savonet/liquidsoap/issues/746#issuecomment-667680083
 def source_transition(a, b) =
-  if a.metadata["type"] == "live" then
+  if a.metadata[TYPE_KEY] == TYPE_LIVE then
     live_out(a.source, b.source)
-  elsif b.metadata["type"] == "live" then
+  elsif b.metadata[TYPE_KEY] == TYPE_LIVE then
     live_in(a.source, b.source)
   else
     sequence([a.source, b.source])
@@ -63,7 +66,7 @@ decay_port = int_of_string(get_env("DECAY_PORT"))
 decay_password = get_env("DECAY_PASSWORD")
 decay_mount = get_env("DECAY_MOUNT")
 
-music_file = resource("audio/fallback.mp3")
+music_file = resource(FALLBACK_PATH)
 
 ### inputs
 
