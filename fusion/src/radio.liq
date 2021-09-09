@@ -57,6 +57,10 @@ def live_out(a, b) =
   simple_cross(duration=SOURCE_CROSS_DURATION, a, b)
 end
 
+# called by cross 
+# when there should be a transition between tracks on one stream
+# or between different streams
+# a is track/stream that is ending, b is the starting one
 def source_transition(a, b) =
   if a.metadata[TYPE_KEY] == TYPE_LIVE then
     live_out(a.source, b.source)
