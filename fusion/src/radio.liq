@@ -1,13 +1,23 @@
 ### constants
 
 RESOURCE_PATH = "resources"
-LIVE_PORT = 8000
+FALLBACK_PATH = "audio/fallback.mp3"
 
+LIVE_PORT = 8000
+# ogg supports embedding metadata in stream
+LIVE_CONTENT_TYPE = "audio/ogg"
+
+TYPE_KEY = "type"
 TYPE_LIVE = "live"
 TYPE_PLAYLIST = "playlist"
 
 SOURCE_CROSS_DURATION = 5.
 LIVE_BUFFER_LENGTH = 2. * SOURCE_CROSS_DURATION
+
+### settings
+
+# set ogg decoder priority higher than ffmpeg (which is 10, see: https://github.com/savonet/liquidsoap/issues/1864#issuecomment-912957717)
+settings.decoder.priorities.ogg.set(15)
 
 ### utils
 
@@ -20,33 +30,44 @@ def resource(path) =
 end
 
 def tag_type(type, _) =
-  [("type", type)]
+  [(TYPE_KEY, type)]
+end
+
+def simple_cross(~duration, a, b) =
+  add(
+    normalize=false, 
+    [
+      fade.out(duration=duration, type="sin", a),
+      fade.in(duration=duration, type="sin", b)
+    ]
+  )
 end
 
 ### transitions
 
+def between_tracks(a, b) =
+  sequence([a, b])
+end
+
 def live_in(a, b) =
-  add(normalize=false, [
-      fade.out(duration=SOURCE_CROSS_DURATION, type="sin", a),
-      fade.in(duration=SOURCE_CROSS_DURATION, type="sin", b)
-    ])
+  simple_cross(duration=SOURCE_CROSS_DURATION, a, b)
 end
 
 def live_out(a, b) =
-  add(normalize=false, [
-      fade.out(duration=SOURCE_CROSS_DURATION, type="sin", a),
-      fade.in(duration=SOURCE_CROSS_DURATION, type="sin", b)
-    ])
+  simple_cross(duration=SOURCE_CROSS_DURATION, a, b)
 end
 
-# solution from https://github.com/savonet/liquidsoap/issues/746#issuecomment-667680083
+# called by cross 
+# when there should be a transition between tracks on one stream
+# or between different streams
+# a is track/stream that is ending, b is the starting one
 def source_transition(a, b) =
-  if a.metadata["type"] == "live" then
+  if a.metadata[TYPE_KEY] == TYPE_LIVE then
     live_out(a.source, b.source)
-  elsif b.metadata["type"] == "live" then
+  elsif b.metadata[TYPE_KEY] == TYPE_LIVE then
     live_in(a.source, b.source)
   else
-    sequence([a.source, b.source])
+    between_tracks(a.source, b.source)
   end
 end
 
@@ -57,20 +78,24 @@ decay_port = int_of_string(get_env("DECAY_PORT"))
 decay_password = get_env("DECAY_PASSWORD")
 decay_mount = get_env("DECAY_MOUNT")
 
-music_file = resource("audio/fallback.mp3")
+music_file = resource(FALLBACK_PATH)
 
 ### inputs
 
 music = single(music_file)
 music = map_metadata(tag_type(TYPE_PLAYLIST), music)
 
-live = input.srt(port=LIVE_PORT)
+live = input.srt(port=LIVE_PORT, content_type=LIVE_CONTENT_TYPE)
 live = map_metadata(tag_type(TYPE_LIVE), live)
+live = merge_tracks(live)
 live = buffer(buffer=LIVE_BUFFER_LENGTH, fallible=true, live)
 
 ### stream
 
 radio = fallback(track_sensitive=false, [live, music])
+# crossing inspiration:
+# https://github.com/savonet/liquidsoap/issues/746#issuecomment-667680083
+# https://github.com/savonet/liquidsoap/issues/695#issuecomment-459973359
 radio = cross(duration=SOURCE_CROSS_DURATION, source_transition, radio)
 radio = mksafe(radio)
 
