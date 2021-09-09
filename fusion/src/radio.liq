@@ -16,7 +16,7 @@ LIVE_BUFFER_LENGTH = 2. * SOURCE_CROSS_DURATION
 
 ### settings
 
-# set ogg decoder priority higher than ffmpeg, see: https://github.com/savonet/liquidsoap/issues/1864#issuecomment-912957717
+# set ogg decoder priority higher than ffmpeg (which is 10, see: https://github.com/savonet/liquidsoap/issues/1864#issuecomment-912957717)
 settings.decoder.priorities.ogg.set(15)
 
 ### utils
