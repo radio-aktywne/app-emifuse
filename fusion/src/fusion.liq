@@ -75,7 +75,7 @@ end
 
 decay_host = get_env("DECAY_HOST")
 decay_port = int_of_string(get_env("DECAY_PORT"))
-decay_password = get_env("DECAY_PASSWORD")
+decay_password = get_env("DECAY_SOURCE_PASSWORD")
 decay_mount = get_env("DECAY_MOUNT")
 
 music_file = resource(FALLBACK_PATH)
