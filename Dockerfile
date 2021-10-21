@@ -13,4 +13,4 @@ ENV FUSION_TARGET_ICECAST_HOST="decay" \
 # live input on port 9000
 EXPOSE 9000/udp
 
-ENTRYPOINT ["liquidsoap", "fusion.liq"]
+ENTRYPOINT ["./start.sh", "--live", "9000"]
