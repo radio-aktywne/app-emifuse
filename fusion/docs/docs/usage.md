@@ -3,7 +3,7 @@
 To start the server make sure you have [`liquidsoap`](https://www.liquidsoap.info) installed, then `cd` into `src` and run:
 
 ```sh
-liquidsoap fusion.liq
+./start.sh
 ```
 
 Right after starting it will starting streaming songs from the embedded playlist,
