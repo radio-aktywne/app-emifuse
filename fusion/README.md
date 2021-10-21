@@ -22,11 +22,11 @@ liquidsoap fusion.liq
 ```
 
 Right after starting it will starting streaming songs from the embedded playlist,
-but you can connect with [`SRT`](https://www.haivision.com/products/srt-secure-reliable-transport/) to [`http://localhost:9000`](http://localhost:9000) and send your own audio.
+but you can connect with [`SRT`](https://www.haivision.com/products/srt-secure-reliable-transport/) to [`srt://localhost:9000`](srt://localhost:9000) by default and send your own audio.
 
 ## Output
 
-Currently, `fusion` supports sending the output only to an [Icecast](https://icecast.org) server (nicknamed `decay` here).
+Currently, `fusion` supports sending the output only to an [Icecast](https://icecast.org) server.
 You need to provide some info about it using environmental variables:
 
 - `FUSION_TARGET_ICECAST_HOST` - address of the host where the Icecast server is running

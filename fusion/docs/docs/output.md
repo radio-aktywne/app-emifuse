@@ -1,6 +1,6 @@
 # Output
 
-Currently, `fusion` supports sending the output only to an [Icecast](https://icecast.org) server (nicknamed `decay` here).
+Currently, `fusion` supports sending the output only to an [Icecast](https://icecast.org) server.
 You need to provide some info about it using environmental variables:
 
 - `FUSION_TARGET_ICECAST_HOST` - address of the host where the Icecast server is running

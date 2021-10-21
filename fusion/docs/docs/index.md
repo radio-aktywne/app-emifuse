@@ -11,4 +11,4 @@ liquidsoap fusion.liq
 ```
 
 Right after starting it will starting streaming songs from the embedded playlist,
-but you can connect with [`SRT`](https://www.haivision.com/products/srt-secure-reliable-transport/) to [`http://localhost:9000`](http://localhost:9000) and send your own audio.
+but you can connect with [`SRT`](https://www.haivision.com/products/srt-secure-reliable-transport/) to [`srt://localhost:9000`](srt://localhost:9000) by default and send your own audio.
