@@ -3,7 +3,6 @@
 RESOURCE_PATH = "resources"
 FALLBACK_PATH = "audio/fallback.mp3"
 
-LIVE_PORT = 8000
 # ogg supports embedding metadata in stream
 LIVE_CONTENT_TYPE = "audio/ogg"
 
@@ -73,10 +72,11 @@ end
 
 ### variables
 
-decay_host = get_env("DECAY_HOST")
-decay_port = int_of_string(get_env("DECAY_PORT"))
-decay_password = get_env("DECAY_SOURCE_PASSWORD")
-decay_mount = get_env("DECAY_MOUNT")
+live_port = int_of_string(get_env("FUSION_SOURCE_LIVE_PORT"))
+target_icecast_host = get_env("FUSION_TARGET_ICECAST_HOST")
+target_icecast_port = int_of_string(get_env("FUSION_TARGET_ICECAST_PORT"))
+target_icecast_password = get_env("FUSION_TARGET_ICECAST_PASSWORD")
+target_icecast_mount = get_env("FUSION_TARGET_ICECAST_MOUNT")
 
 music_file = resource(FALLBACK_PATH)
 
@@ -85,7 +85,7 @@ music_file = resource(FALLBACK_PATH)
 music = single(music_file)
 music = map_metadata(tag_type(TYPE_PLAYLIST), music)
 
-live = input.srt(port=LIVE_PORT, content_type=LIVE_CONTENT_TYPE)
+live = input.srt(port=live_port, content_type=LIVE_CONTENT_TYPE)
 live = map_metadata(tag_type(TYPE_LIVE), live)
 live = merge_tracks(live)
 live = buffer(buffer=LIVE_BUFFER_LENGTH, fallible=true, live)
@@ -102,8 +102,8 @@ radio = mksafe(radio)
 ### outputs
 
 out = output.icecast(
-  host=decay_host,
-  port=decay_port,
-  password=decay_password
+  host=target_icecast_host,
+  port=target_icecast_port,
+  password=target_icecast_password
 )
-out(%mp3, mount=decay_mount, radio)
+out(%mp3, mount=target_icecast_mount, radio)

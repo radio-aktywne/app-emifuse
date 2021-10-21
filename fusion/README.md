@@ -29,7 +29,7 @@ but you can connect with [`SRT`](https://www.haivision.com/products/srt-secure-r
 Currently, `fusion` supports sending the output only to an [Icecast](https://icecast.org) server (nicknamed `decay` here).
 You need to provide some info about it using environmental variables:
 
-- `DECAY_HOST` - address of the host where the Icecast server is running
-- `DECAY_PORT` - port at which the Icecast server is listening
-- `DECAY_SOURCE_PASSWORD` - password used for accessing Icecast
-- `DECAY_MOUNT` - mount point
+- `FUSION_TARGET_ICECAST_HOST` - address of the host where the Icecast server is running
+- `FUSION_TARGET_ICECAST_PORT` - port at which the Icecast server is listening
+- `FUSION_TARGET_ICECAST_PASSWORD` - password used for accessing Icecast
+- `FUSION_TARGET_ICECAST_MOUNT` - mount point
