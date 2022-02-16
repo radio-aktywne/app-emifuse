@@ -1,4 +1,6 @@
-FROM savonet/liquidsoap:main
+ARG LIQUIDSOAP_IMAGE_TAG=v2.0.3
+
+FROM savonet/liquidsoap:$LIQUIDSOAP_IMAGE_TAG
 
 COPY ./fusion/src/ /fusion/src/
 
@@ -6,7 +8,7 @@ WORKDIR /fusion/src
 
 # default configuration, override that with values from your environment
 ENV FUSION_TARGET_ICECAST_HOST="decay" \
-    FUSION_TARGET_ICECAST_PORT="8000" \ 
+    FUSION_TARGET_ICECAST_PORT="8000" \
     FUSION_TARGET_ICECAST_PASSWORD="hackme" \
     FUSION_TARGET_ICECAST_MOUNT="radio.mp3"
 
