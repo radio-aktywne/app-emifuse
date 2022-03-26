@@ -2,7 +2,7 @@
 
 <div align="center">
 
-Audio streaming with Liquidsoap 🧼
+audio streaming with liquidsoap 🧼
 
 [![Testing docker build](https://github.com/radio-aktywne/fusion/actions/workflows/docker-build.yml/badge.svg)](https://github.com/radio-aktywne/fusion/actions/workflows/docker-build.yml)
 [![Deploying docs](https://github.com/radio-aktywne/fusion/actions/workflows/docs.yml/badge.svg)](https://github.com/radio-aktywne/fusion/actions/workflows/docs.yml)
