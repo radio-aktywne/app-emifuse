@@ -3,20 +3,12 @@
 RESOURCE_PATH = "resources"
 FALLBACK_PATH = "audio/fallback.mp3"
 
-# ogg supports embedding metadata in stream
-LIVE_CONTENT_TYPE = "audio/ogg"
-
 TYPE_KEY = "type"
 TYPE_LIVE = "live"
 TYPE_PLAYLIST = "playlist"
 
 SOURCE_CROSS_DURATION = 5.
 LIVE_BUFFER_LENGTH = 2. * SOURCE_CROSS_DURATION
-
-### settings
-
-# set ogg decoder priority higher than ffmpeg (which is 10, see: https://github.com/savonet/liquidsoap/issues/1864#issuecomment-912957717)
-settings.decoder.priorities.ogg.set(15)
 
 ### utils
 
@@ -89,7 +81,7 @@ music = metadata.map(
     music
 )
 
-live = input.srt(port=live_port, content_type=LIVE_CONTENT_TYPE)
+live = input.srt(port=live_port)
 live = metadata.map(
     insert_missing=false,
     fun(_) -> tag_type(type=TYPE_LIVE),
