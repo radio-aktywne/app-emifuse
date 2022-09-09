@@ -25,41 +25,35 @@ def tag_type(~key=TYPE_KEY, ~type) =
 end
 
 def simple_cross(~duration, a, b) =
-  add(
-    normalize=false, 
-    [
-      fade.out(duration=duration, type="sin", a),
-      fade.in(duration=duration, type="sin", b)
-    ]
-  )
+    cross.simple(fade_in=duration, fade_out=duration, a.source, b.source)
 end
 
 ### transitions
 
-def between_tracks(a, b) =
-  sequence([a, b])
+def between_tracks(~duration, a, b) =
+    sequence([a.source, b.source])
 end
 
-def live_in(a, b) =
-  simple_cross(duration=SOURCE_CROSS_DURATION, a, b)
+def live_in(~duration, a, b) =
+    simple_cross(duration=duration, a, b)
 end
 
-def live_out(a, b) =
-  simple_cross(duration=SOURCE_CROSS_DURATION, a, b)
+def live_out(~duration, a, b) =
+    simple_cross(duration=duration, a, b)
 end
 
-# called by cross 
+# called by cross
 # when there should be a transition between tracks on one stream
 # or between different streams
 # a is track/stream that is ending, b is the starting one
-def source_transition(a, b) =
-  if a.metadata[TYPE_KEY] == TYPE_LIVE then
-    live_out(a.source, b.source)
-  elsif b.metadata[TYPE_KEY] == TYPE_LIVE then
-    live_in(a.source, b.source)
-  else
-    between_tracks(a.source, b.source)
-  end
+def transition(~duration, a, b) =
+    if a.metadata[TYPE_KEY] == TYPE_LIVE then
+        live_out(duration=duration, a, b)
+    elsif b.metadata[TYPE_KEY] == TYPE_LIVE then
+        live_in(duration=duration, a, b)
+    else
+        between_tracks(duration=duration, a, b)
+    end
 end
 
 ### variables
@@ -96,7 +90,11 @@ radio = fallback(track_sensitive=false, [live, music])
 # crossing inspiration:
 # https://github.com/savonet/liquidsoap/issues/746#issuecomment-667680083
 # https://github.com/savonet/liquidsoap/issues/695#issuecomment-459973359
-radio = cross(duration=SOURCE_CROSS_DURATION, source_transition, radio)
+radio = cross(
+    duration=SOURCE_CROSS_DURATION,
+    fun(a, b) -> transition(duration=SOURCE_CROSS_DURATION, a, b),
+    radio
+)
 radio = mksafe(radio)
 
 ### outputs
