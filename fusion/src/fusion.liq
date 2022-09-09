@@ -21,15 +21,15 @@ settings.decoder.priorities.ogg.set(15)
 ### utils
 
 def get_env(~default="", key) =
-  list.assoc(default=default, key, environment())
+    list.assoc(default=default, key, environment())
 end
 
 def resource(path) =
-  "#{RESOURCE_PATH}/#{path}"
+    "#{RESOURCE_PATH}/#{path}"
 end
 
-def tag_type(type, _) =
-  [(TYPE_KEY, type)]
+def tag_type(~key=TYPE_KEY, ~type) =
+    [(key, type)]
 end
 
 def simple_cross(~duration, a, b) =
@@ -83,10 +83,18 @@ music_file = resource(FALLBACK_PATH)
 ### inputs
 
 music = single(music_file)
-music = map_metadata(tag_type(TYPE_PLAYLIST), music)
+music = metadata.map(
+    insert_missing=false,
+    fun(_) -> tag_type(type=TYPE_PLAYLIST),
+    music
+)
 
 live = input.srt(port=live_port, content_type=LIVE_CONTENT_TYPE)
-live = map_metadata(tag_type(TYPE_LIVE), live)
+live = metadata.map(
+    insert_missing=false,
+    fun(_) -> tag_type(type=TYPE_LIVE),
+    live
+)
 live = merge_tracks(live)
 live = buffer(buffer=LIVE_BUFFER_LENGTH, fallible=true, live)
 
@@ -101,9 +109,11 @@ radio = mksafe(radio)
 
 ### outputs
 
-out = output.icecast(
-  host=target_icecast_host,
-  port=target_icecast_port,
-  password=target_icecast_password
+output.icecast(
+    %mp3,
+    host=target_icecast_host,
+    port=target_icecast_port,
+    password=target_icecast_password,
+    mount=target_icecast_mount,
+    radio
 )
-out(%mp3, mount=target_icecast_mount, radio)
