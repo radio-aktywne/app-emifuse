@@ -1,4 +1,4 @@
-name: Updating draft release
+name: Draft
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: release-drafter/release-drafter@v5
         with:
-          config-name: release-drafter.yml
+          config-name: release-drafter.yaml
           disable-autolabeler: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

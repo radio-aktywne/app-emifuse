@@ -4,8 +4,8 @@
 
 audio streaming with liquidsoap 🧼
 
-[![Testing docker build](https://github.com/radio-aktywne/fusion/actions/workflows/docker-build.yml/badge.svg)](https://github.com/radio-aktywne/fusion/actions/workflows/docker-build.yml)
-[![Deploying docs](https://github.com/radio-aktywne/fusion/actions/workflows/docs.yml/badge.svg)](https://github.com/radio-aktywne/fusion/actions/workflows/docs.yml)
+[![Build](https://github.com/radio-aktywne/fusion/actions/workflows/build.yaml/badge.svg)](https://github.com/radio-aktywne/fusion/actions/workflows/build.yaml)
+[![Docs](https://github.com/radio-aktywne/fusion/actions/workflows/docs.yaml/badge.svg)](https://github.com/radio-aktywne/fusion/actions/workflows/docs.yaml)
 
 </div>
 
@@ -21,7 +21,7 @@ To start the server make sure you have [`liquidsoap`](https://www.liquidsoap.inf
 ./start.sh
 ```
 
-Right after starting it will starting streaming songs from the embedded playlist,
+Right after starting it will start streaming songs from the embedded playlist,
 but you can connect with [`SRT`](https://www.haivision.com/products/srt-secure-reliable-transport/) to [`srt://localhost:9000`](srt://localhost:9000) by default and send your own audio.
 
 ## Output

@@ -7,6 +7,9 @@ categories:
   - title: "🐛 Bug Fixes"
     labels:
       - "bug"
+  - title: "🧽 Cleanup"
+    labels:
+      - "cleanup"
 exclude-labels:
   - "skip-changelog"
 change-title-escapes: '\<*_&'

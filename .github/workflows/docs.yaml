@@ -1,4 +1,4 @@
-name: Deploying docs
+name: Docs
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
     # trigger only on changes to the following files
     paths:
       - "fusion/docs/**"
-      - ".github/workflows/docs.yml"
+      - ".github/workflows/docs.yaml"
 
 # env for all jobs
 env:
@@ -17,28 +17,29 @@ env:
   CACHE_NUMBER: 0
 
 jobs:
-  deploy-docs:
+  docs:
     name: Deploy docs
     # better to use pinned version here
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Cache packages
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ${{ env.PIP_CACHE_DIR }}
           key: ${{ runner.os }}-pkgs-${{ env.CACHE_NUMBER }}
       - name: Set up Python
-        uses: actions/setup-python@v2
+        id: python
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.9.7"
+          python-version: "3.10.6"
       - name: Set up pip cache
-        run: python3 -m pip config set global.cache-dir ${{ env.PIP_CACHE_DIR }}
+        run: ${{ steps.python.outputs.python-path }} -m pip config set global.cache-dir ${{ env.PIP_CACHE_DIR }}
       - name: Install mkdocs
         working-directory: fusion/docs
-        run: python3 -m pip install -r requirements.txt
+        run: ${{ steps.python.outputs.python-path }} -m pip install -r requirements.txt
       - name: Deploy docs
         working-directory: fusion/docs
         run: mkdocs gh-deploy --force
