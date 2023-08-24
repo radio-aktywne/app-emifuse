@@ -5,7 +5,7 @@ title: Index
 
 # fusion
 
-audio streaming with liquidsoap 🧼
+Audio streaming with Liquidsoap 🧼
 
 ## 💡 About
 

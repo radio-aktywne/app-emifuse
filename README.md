@@ -2,7 +2,7 @@
 
 <div align="center">
 
-audio streaming with liquidsoap 🧼
+Audio streaming with Liquidsoap 🧼
 
 [![Lint](https://github.com/radio-aktywne/app-fusion/actions/workflows/lint.yaml/badge.svg)](https://github.com/radio-aktywne/app-fusion/actions/workflows/lint.yaml)
 [![Image](https://github.com/radio-aktywne/app-fusion/actions/workflows/image.yaml/badge.svg)](https://github.com/radio-aktywne/app-fusion/actions/workflows/image.yaml)
