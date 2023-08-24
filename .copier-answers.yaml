@@ -1,0 +1,14 @@
+---
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 0.1.3
+_src_path: gh:radio-aktywne/template-app-generic
+accountname: radio-aktywne
+appname: fusion
+description: audio streaming with liquidsoap 🧼
+docs: true
+docsurl: https://radio-aktywne.github.io/app-fusion
+envprefix: FUSION
+registry: true
+releases: true
+reponame: app-fusion
+repourl: https://github.com/radio-aktywne/app-fusion

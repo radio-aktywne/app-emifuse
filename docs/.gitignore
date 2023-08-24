@@ -1,0 +1,17 @@
+# Dependencies
+/node_modules
+
+# Production
+/build
+
+# Test
+/.tmp
+
+# Generated files
+.docusaurus
+.cache-loader
+
+# Misc
+.DS_Store
+
+npm-debug.log*
