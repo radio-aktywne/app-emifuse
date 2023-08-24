@@ -42,6 +42,7 @@
         copier = pkgs.copier;
         # Build liquidsoap manually to use the latest version
         liquidsoap = pkgs.callPackage ./liquidsoap.nix {};
+        ffmpeg = pkgs.ffmpeg;
         tini = pkgs.tini;
         su-exec = pkgs.su-exec;
       in {
@@ -73,6 +74,7 @@
               trunk
               copier
               liquidsoap
+              ffmpeg
             ];
           };
 
