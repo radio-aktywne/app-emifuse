@@ -1,0 +1,107 @@
+---
+version: 0.1
+cli:
+  version: 1.10.0
+plugins:
+  sources:
+    - id: trunk
+      ref: v0.0.17
+      uri: https://github.com/trunk-io/plugins
+runtimes:
+  enabled:
+    # Needed for gitleaks, shfmt, actionlint
+    - go@1.19.5
+    # Needed for prettier, markdownlint, svgo, eslint
+    - node@18.12.1
+    # Needed for yamllint
+    - python@3.10.8
+lint:
+  files:
+    # Liquidsoap is not defined by default, so we need to add it
+    - name: liq
+      extensions:
+        - liq
+  ignore:
+    - linters: [ALL]
+      paths:
+        # Ignore copier answers file
+        - "**/.copier-answers.yaml"
+  definitions:
+    # Liquidsoap linting
+    - name: liquidsoap
+      files: [liq]
+      commands:
+        - output: regex
+          parse_regex: "(?s)\
+            At (?P<path>.+?), line (?P<line>\\d+), char (?P<col>\\d+).*?:\
+            \\n.*?\\n\\n\
+            (?P<severity>\\w+) (?P<code>\\d+): (?P<message>.+?)(?:$|\\nAt)"
+          run: >-
+            liquidsoap
+            --check
+            ${target}
+          success_codes: [0, 1]
+    # Nix formatting check (local)
+    - name: nix-fmt-check
+      files: [nix]
+      run_when: [ci, cli]
+      commands:
+        - output: pass_fail
+          read_output_from: stderr
+          run: >-
+            nix
+            --accept-flake-config
+            --extra-experimental-features 'nix-command flakes'
+            --no-warn-dirty
+            fmt
+            --
+            --check
+            path://${workspace}/${target}
+          success_codes: [0, 1]
+    # Nix flake check (local)
+    - name: nix-flake-check
+      files: [nix]
+      run_when: [ci, cli]
+      commands:
+        - output: pass_fail
+          target: .
+          read_output_from: stderr
+          run: >-
+            nix
+            --accept-flake-config
+            --extra-experimental-features 'nix-command flakes'
+            --no-warn-dirty
+            flake
+            check
+            path://${workspace}
+          success_codes: [0, 1]
+  disabled:
+    # Disable default nix formatter
+    - nixpkgs-fmt
+  enabled:
+    # Check for whitespace errors
+    - git-diff-check
+    # Check for secrets in the code
+    - gitleaks@8.16.3
+    # JSON, YAML, Markdown formatting
+    - prettier@2.8.8
+    # Markdown linting
+    - markdownlint@0.34.0
+    # YAML linting
+    - yamllint@1.32.0
+    # Shell scripts linting
+    - shellcheck@0.9.0
+    # Shell scripts formatting
+    - shfmt@3.5.0
+    # GitHub Actions linting
+    - actionlint@1.6.24
+    # SVG formatting
+    - svgo@3.0.2
+    # JavaScript linting
+    - eslint@8.41.0
+    # Liquidsoap linting
+    - liquidsoap@SYSTEM
+    # Nix formatting check
+    - nix-fmt-check@SYSTEM
+    # Nix flake check
+    - nix-flake-check@SYSTEM

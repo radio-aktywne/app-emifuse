@@ -1,2 +1,24 @@
-**
-!fusion/src/**
+#Task
+/.task
+
+# Misc
+.DS_Store
+.todo
+
+# Tracked, but not needed
+.devcontainer
+.github
+.trunk
+.vscode
+docs
+.copier-answers.yaml
+.dockerignore
+.envrc
+.gitattributes
+.gitignore
+CONTRIBUTING.md
+docker-compose.yaml
+Dockerfile
+LICENSE
+README.md
+Taskfile.dist.yaml

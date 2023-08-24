@@ -1,11 +1,5 @@
 ---
-name: Docs
-
-# Only one workflow can run at a time
-# If there is newer workflow in progress, cancel older ones
-concurrency:
-  group: docs
-  cancel-in-progress: true
+name: Lint
 
 # Put 'on' in quotes to avoid YAML parsing error
 "on":
@@ -15,43 +9,51 @@ concurrency:
   push:
     branches:
       - main
-    # Run only if there are changes in docs/ or workflow file
-    paths:
-      - "docs/**"
-      - "copier.yaml"
-      - "*.nix"
-      - "flake.lock"
-      - "Taskfile.dist.yaml"
-      - ".github/workflows/docs.yaml"
+  # Run also on pull requests to main branch
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
-    name: Build docs
+  lint:
+    name: Lint
     # Pin version of Ubuntu to avoid breaking changes
     runs-on: ubuntu-22.04
     # Use reasonable timeout to avoid stuck workflows
-    timeout-minutes: 5
+    timeout-minutes: 10
     env:
       NIX_CACHE_DIR: /home/runner/.nixcache
+      TRUNK_CACHE_DIR: /home/runner/.trunkcache
     permissions:
       # Needed to checkout code
       contents: read
-      # Needed to upload page artifact
-      pages: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v3.5.2
+      # We need to fetch upstream so Trunk can compare against it
+      - name: Fetch upstream
+        if: github.event_name == 'pull_request'
+        run: >
+          git
+          fetch
+          origin
+          ${{ github.event.pull_request.base.ref }}
       - name: Setup Nix cache
         uses: actions/cache@v3.3.1
         id: cache-nix
         with:
           path: ${{ env.NIX_CACHE_DIR }}
-          key: docs-nix
+          key: lint-nix
+      - name: Setup Trunk cache
+        uses: actions/cache@v3.3.1
+        with:
+          path: ${{ env.TRUNK_CACHE_DIR }}
+          key: lint-trunk
       - name: Setup docs modules cache
         uses: actions/cache@v3.3.1
         with:
           path: docs/node_modules
-          key: docs-modules
+          key: lint-docs-modules
       - name: Install Nix
         uses: cachix/install-nix-action@v21
         with:
@@ -64,25 +66,38 @@ jobs:
           nix-store
           --import
           < ${{ env.NIX_CACHE_DIR }}/archive.nar
-      - name: Build docs
+      # If running on pull request, compare against base branch
+      - name: Trunk Check
+        if: github.event_name == 'pull_request'
+        env:
+          TRUNK_CACHE: ${{ env.TRUNK_CACHE_DIR }}
         run: >
           nix
           develop
-          .#docs
+          .#lint
           --command
           --
           task
-          docs
+          lint
           --
-          build
-          --out-dir
-          build
-      - name: Setup Pages
-        uses: actions/configure-pages@v3.0.6
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1.0.8
-        with:
-          path: docs/build
+          --ci
+          --upstream
+          ${{ github.event.pull_request.base.sha }}
+      # Else, compare against main branch
+      - name: Trunk Check
+        if: github.event_name != 'pull_request'
+        env:
+          TRUNK_CACHE: ${{ env.TRUNK_CACHE_DIR }}
+        run: >
+          nix
+          develop
+          .#lint
+          --command
+          --
+          task
+          lint
+          --
+          --ci
       # See: https://github.com/cachix/install-nix-action/issues/56
       - name: Export Nix store cache
         if: "!cancelled()"
@@ -94,24 +109,3 @@ jobs:
           nix-store
           --export $(find /nix/store -maxdepth 1 -name '*-*')
           > ${{ env.NIX_CACHE_DIR }}/archive.nar
-  deploy:
-    name: Deploy docs
-    # Run only if build job succeeded
-    needs: build
-    # Pin version of Ubuntu to avoid breaking changes
-    runs-on: ubuntu-22.04
-    # Use reasonable timeout to avoid stuck workflows
-    timeout-minutes: 5
-    # Use Pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    permissions:
-      # Needed to to deploy to Pages
-      pages: write
-      # Also needed to deploy to Pages
-      id-token: write
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2.0.1
