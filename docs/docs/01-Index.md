@@ -3,7 +3,7 @@ slug: /
 title: Index
 ---
 
-# fusion
+# fusion app
 
 Audio streaming with Liquidsoap 🧼
 

@@ -38,6 +38,7 @@
         node = pkgs.nodejs;
         nil = pkgs.nil;
         task = pkgs.go-task;
+        coreutils = pkgs.coreutils;
         trunk = pkgs.trunk-io;
         copier = pkgs.copier;
         # Build liquidsoap manually to use the latest version
@@ -71,6 +72,7 @@
               node
               nil
               task
+              coreutils
               trunk
               copier
               liquidsoap
@@ -93,6 +95,7 @@
 
             packages = [
               task
+              coreutils
               copier
             ];
           };
@@ -103,6 +106,7 @@
             packages = [
               node
               task
+              coreutils
               trunk
               liquidsoap
             ];
@@ -114,6 +118,7 @@
             packages = [
               node
               task
+              coreutils
             ];
           };
         };

@@ -1,5 +1,7 @@
 #Task
 /.task
+/Taskfile.yaml
+/Taskfile.yml
 
 # Misc
 .DS_Store

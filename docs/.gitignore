@@ -4,9 +4,6 @@
 # Production
 /build
 
-# Test
-/.tmp
-
 # Generated files
 .docusaurus
 .cache-loader
@@ -15,3 +12,6 @@
 .DS_Store
 
 npm-debug.log*
+
+# Test
+/.tmp

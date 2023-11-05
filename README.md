@@ -1,4 +1,4 @@
-<h1 align="center">fusion</h1>
+<h1 align="center">fusion app</h1>
 
 <div align="center">
 
