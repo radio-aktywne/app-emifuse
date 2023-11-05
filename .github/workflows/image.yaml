@@ -9,28 +9,28 @@ name: Image
   push:
     branches:
       - main
-    # Run only on changes to files relevant to the image
+    # Run only on changes to relevant files
     paths:
+      - ".github/workflows/image.yaml"
       - "scripts/**"
       - "src/**"
       - ".dockerignore"
       - "Dockerfile"
-      - "*.nix"
       - "flake.lock"
-      - ".github/workflows/image.yaml"
+      - "*.nix"
   # Run also on pull requests to main branch
   pull_request:
     branches:
       - main
-    # Run only on changes to files relevant to the image
+    # Run only on changes to relevant files
     paths:
+      - ".github/workflows/image.yaml"
       - "scripts/**"
       - "src/**"
       - ".dockerignore"
       - "Dockerfile"
-      - "*.nix"
       - "flake.lock"
-      - ".github/workflows/image.yaml"
+      - "*.nix"
 
 jobs:
   image:
@@ -38,17 +38,17 @@ jobs:
     # Pin version of Ubuntu to avoid breaking changes
     runs-on: ubuntu-22.04
     # Use reasonable timeout to avoid stuck workflows
-    timeout-minutes: 20
+    timeout-minutes: 30
     permissions:
       # Needed to checkout code
       contents: read
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@v4.1.0
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2.7.0
+        uses: docker/setup-buildx-action@v3.0.0
       - name: Build Docker image
-        uses: docker/build-push-action@v4.1.1
+        uses: docker/build-push-action@v5.0.0
         with:
           context: .
           # Don't save image

@@ -29,7 +29,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@v4.1.0
       # We need to fetch upstream so Trunk can compare against it
       - name: Fetch upstream
         if: github.event_name == 'pull_request'
@@ -39,26 +39,26 @@ jobs:
           origin
           ${{ github.event.pull_request.base.ref }}
       - name: Setup Nix cache
-        uses: actions/cache@v3.3.1
+        uses: actions/cache@v3.3.2
         id: cache-nix
         with:
           path: ${{ env.NIX_CACHE_DIR }}
           key: lint-nix
       - name: Setup Trunk cache
-        uses: actions/cache@v3.3.1
+        uses: actions/cache@v3.3.2
         with:
           path: ${{ env.TRUNK_CACHE_DIR }}
           key: lint-trunk
       - name: Setup docs modules cache
-        uses: actions/cache@v3.3.1
+        uses: actions/cache@v3.3.2
         with:
           path: docs/node_modules
           key: lint-docs-modules
       - name: Install Nix
-        uses: cachix/install-nix-action@v21
+        uses: cachix/install-nix-action@v22
         with:
           github_access_token: ${{ github.token }}
-          install_url: https://releases.nixos.org/nix/nix-2.15.1/install
+          install_url: https://releases.nixos.org/nix/nix-2.18.0/install
       # See: https://github.com/cachix/install-nix-action/issues/56
       - name: Import Nix store cache
         if: steps.cache-nix.outputs.cache-hit == 'true'
@@ -67,7 +67,7 @@ jobs:
           --import
           < ${{ env.NIX_CACHE_DIR }}/archive.nar
       # If running on pull request, compare against base branch
-      - name: Trunk Check
+      - name: Lint
         if: github.event_name == 'pull_request'
         env:
           TRUNK_CACHE: ${{ env.TRUNK_CACHE_DIR }}
@@ -84,7 +84,7 @@ jobs:
           --upstream
           ${{ github.event.pull_request.base.sha }}
       # Else, compare against main branch
-      - name: Trunk Check
+      - name: Lint
         if: github.event_name != 'pull_request'
         env:
           TRUNK_CACHE: ${{ env.TRUNK_CACHE_DIR }}
