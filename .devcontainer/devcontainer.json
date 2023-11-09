@@ -1,5 +1,21 @@
 {
+  // Use latest pre-built image
   "image": "ghcr.io/radio-aktywne/devcontainers/app-generic:latest",
+  // Run arguments
+  "runArgs": [
+    // Use host UTS namespace
+    "--uts=host",
+    // Use host IPC
+    "--ipc=host",
+    // Use host network
+    "--network=host",
+    // Use host user namespace
+    "--userns=host",
+    // Use host cgroup namespace
+    "--cgroupns=host",
+    // Run with elevated privileges
+    "--privileged"
+  ],
   // Tool-specific settings
   "customizations": {
     // VS Code settings
