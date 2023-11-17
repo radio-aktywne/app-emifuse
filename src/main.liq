@@ -1,7 +1,7 @@
 ### Constants
 
 SOURCE_PATH = "src"
-RESOURCES_PATH = "#{SOURCE_PATH}/resources"
+RESOURCES_PATH = "#{SOURCE_PATH}/resources/"
 FALLBACK_PATH = "#{RESOURCES_PATH}/audio/fallback.mp3"
 
 TYPE_KEY = "type"
@@ -76,19 +76,20 @@ end
 
 ### Variables
 
-source_live_port = int_of_string(get_env(default="9000", "FUSION_SOURCE_LIVE_PORT"))
-target_icecast_host = get_env(default="localhost", "FUSION_TARGET_ICECAST_HOST")
-target_icecast_port = int_of_string(get_env(default="8000", "FUSION_TARGET_ICECAST_PORT"))
-target_icecast_user = get_env(default="source", "FUSION_TARGET_ICECAST_USER")
-target_icecast_password = get_env(default="password", "FUSION_TARGET_ICECAST_PASSWORD")
-target_icecast_mount = get_env(default="radio.mp3", "FUSION_TARGET_ICECAST_MOUNT")
+host = get_env(default="0.0.0.0", "FUSION_HOST")
+port = int_of_string(get_env(default="9000", "FUSION_PORT"))
+streamcast_host = get_env(default="localhost", "FUSION_STREAMCAST_HOST")
+streamcast_port = int_of_string(get_env(default="8000", "FUSION_STREAMCAST_PORT"))
+streamcast_user = get_env(default="source", "FUSION_STREAMCAST_USER")
+streamcast_password = get_env(default="password", "FUSION_STREAMCAST_PASSWORD")
+streamcast_mount = get_env(default="radio.mp3", "FUSION_STREAMCAST_MOUNT")
 
 ### Inputs
 
 music = single(FALLBACK_PATH)
 music = add_metadata(tag_type(type=TYPE_PLAYLIST), music)
 
-live = input.srt(port=source_live_port)
+live = input.srt(bind_address=host, port=port)
 live = add_metadata(tag_type(type=TYPE_LIVE), live)
 live = source(source.tracks(live))
 live = buffer(buffer=LIVE_BUFFER_LENGTH, fallible=true, live)
@@ -111,11 +112,11 @@ radio = mksafe(radio)
 
 output.icecast(
     %mp3,
-    host=target_icecast_host,
-    port=target_icecast_port,
-    user=target_icecast_user,
-    password=target_icecast_password,
-    mount=target_icecast_mount,
+    host=streamcast_host,
+    port=streamcast_port,
+    user=streamcast_user,
+    password=streamcast_password,
+    mount=streamcast_mount,
     icy_metadata=TARGET_METADATA,
     icy_song=fun(_) -> null(),
     radio

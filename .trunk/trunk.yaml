@@ -1,7 +1,6 @@
----
 version: 0.1
 cli:
-  version: 1.17.1
+  version: 1.17.2
 plugins:
   sources:
     - id: trunk
@@ -10,7 +9,7 @@ plugins:
 runtimes:
   enabled:
     # Needed for gitleaks, shfmt
-    - go@1.21.3
+    - go@1.21.4
     # Needed for eslint, markdownlint, prettier, svgo
     - node@20.9.0
     # Needed for yamllint
@@ -44,7 +43,6 @@ lint:
     # Nix formatting check (local)
     - name: nix-fmt-check
       files: [nix]
-      run_when: [ci, cli]
       commands:
         - output: pass_fail
           read_output_from: stderr
@@ -62,10 +60,9 @@ lint:
     # Nix flake check (local)
     - name: nix-flake-check
       files: [nix]
-      run_when: [ci, cli]
       commands:
         - output: pass_fail
-          target: .
+          target: ./
           read_output_from: stderr
           run: >-
             nix
@@ -96,13 +93,13 @@ lint:
     - nix-fmt-check@SYSTEM
     # Nix flake check
     - nix-flake-check@SYSTEM
-    # JSON, YAML, Markdown formatting
+    # JS, JSON, YAML, Markdown formatting
     - prettier@3.0.2
     # Shell linting
     - shellcheck@0.9.0
     # Shell formatting
     - shfmt@3.7.0
     # SVG formatting
-    - svgo@3.0.2
+    - svgo@3.0.3
     # YAML linting
-    - yamllint@1.32.0
+    - yamllint@1.33.0

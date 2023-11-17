@@ -1,4 +1,3 @@
----
 name: Docs
 
 # Only one workflow can run at a time
@@ -17,11 +16,11 @@ concurrency:
       - main
     # Run only on changes to relevant files
     paths:
-      - ".github/workflows/docs.yaml"
-      - "docs/**"
-      - "flake.lock"
+      - .github/workflows/docs.yaml
+      - docs/**
+      - flake.lock
       - "*.nix"
-      - "Taskfile.dist.yaml"
+      - Taskfile.dist.yaml
 
 jobs:
   build:
@@ -31,7 +30,7 @@ jobs:
     # Use reasonable timeout to avoid stuck workflows
     timeout-minutes: 10
     env:
-      NIX_CACHE_DIR: /home/runner/.nixcache
+      NIX_CACHE_DIR: /home/runner/.nixcache/
     permissions:
       # Needed to checkout code
       contents: read
@@ -39,7 +38,7 @@ jobs:
       pages: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.1.0
+        uses: actions/checkout@v4.1.1
       - name: Setup Nix cache
         uses: actions/cache@v3.3.2
         id: cache-nix
@@ -49,13 +48,13 @@ jobs:
       - name: Setup docs modules cache
         uses: actions/cache@v3.3.2
         with:
-          path: docs/node_modules
+          path: docs/node_modules/
           key: docs-modules
       - name: Install Nix
-        uses: cachix/install-nix-action@v22
+        uses: cachix/install-nix-action@v23
         with:
           github_access_token: ${{ github.token }}
-          install_url: https://releases.nixos.org/nix/nix-2.18.0/install
+          install_url: https://releases.nixos.org/nix/nix-2.18.1/install
       # See: https://github.com/cachix/install-nix-action/issues/56
       - name: Import Nix store cache
         if: steps.cache-nix.outputs.cache-hit == 'true'
@@ -67,7 +66,7 @@ jobs:
         run: >
           nix
           develop
-          .#docs
+          ./#docs
           --command
           --
           task
@@ -75,13 +74,13 @@ jobs:
           --
           build
           --out-dir
-          build
+          build/
       - name: Setup Pages
         uses: actions/configure-pages@v3.0.6
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2.0.0
         with:
-          path: docs/build
+          path: docs/build/
       # See: https://github.com/cachix/install-nix-action/issues/56
       - name: Export Nix store cache
         if: "!cancelled()"
@@ -91,7 +90,7 @@ jobs:
           ${{ env.NIX_CACHE_DIR }}
           &&
           nix-store
-          --export $(find /nix/store -maxdepth 1 -name '*-*')
+          --export $(find /nix/store/ -maxdepth 1 -name '*-*')
           > ${{ env.NIX_CACHE_DIR }}/archive.nar
   deploy:
     name: Deploy docs
