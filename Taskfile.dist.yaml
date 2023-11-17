@@ -1,4 +1,3 @@
----
 version: "3"
 
 tasks:
@@ -45,31 +44,31 @@ tasks:
         {{ .CLI_ARGS }}
   remove-docs-node-modules:
     desc: Clean docs node_modules
-    dir: docs
+    dir: docs/
     cmds:
       - >
         rm
         --recursive
         --force
-        node_modules
+        node_modules/
     status:
       - >
         test
         '!'
         -d
-        node_modules
+        node_modules/
   install-docs:
     desc: Install docs dependencies
-    dir: docs
+    dir: docs/
     sources:
-      - ./package.json
-      - ./package-lock.json
+      - package-lock.json
+      - package.json
       - ../flake.lock
       - ../*.nix
       - ../Taskfile.dist.yaml
       - ../{taskfile,Taskfile}.{yaml,yml}
     generates:
-      - ./node_modules/**/*
+      - node_modules/**/*
     cmds:
       - >
         npm
@@ -78,7 +77,7 @@ tasks:
   install-docs-internal:
     desc: Install docs dependencies quietly
     internal: true
-    dir: docs
+    dir: docs/
     cmds:
       - task: install-docs
         vars:
@@ -90,7 +89,7 @@ tasks:
             --no-progress
   update-docs:
     desc: Update docs dependencies
-    dir: docs
+    dir: docs/
     cmds:
       - task: install-docs-internal
       - >
@@ -101,7 +100,7 @@ tasks:
         {{ .CLI_ARGS }}
   test-docs:
     desc: Test docs
-    dir: docs
+    dir: docs/
     cmds:
       - task: install-docs-internal
       - >
@@ -112,7 +111,7 @@ tasks:
         {{ .CLI_ARGS }}
   docs:
     desc: Run docusaurus
-    dir: docs
+    dir: docs/
     interactive: true
     cmds:
       - task: install-docs-internal

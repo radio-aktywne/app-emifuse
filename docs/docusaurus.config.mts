@@ -33,7 +33,7 @@ const config: Config = {
         // Disable blog
         blog: false,
         theme: {
-          customCss: "./custom.css",
+          customCss: "custom.css",
         },
       } satisfies Preset.Options,
     ],
