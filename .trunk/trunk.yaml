@@ -1,15 +1,15 @@
 version: 0.1
 cli:
-  version: 1.17.2
+  version: 1.18.0
 plugins:
   sources:
     - id: trunk
-      ref: v1.2.6
+      ref: v1.4.0
       uri: https://github.com/trunk-io/plugins
 runtimes:
   enabled:
     # Needed for gitleaks, shfmt
-    - go@1.21.4
+    - go@1.21.5
     # Needed for eslint, markdownlint, prettier, svgo
     - node@20.9.0
     # Needed for yamllint
@@ -26,6 +26,22 @@ lint:
         # Ignore copier answers file
         - "**/.copier-answers.yaml"
   definitions:
+    # Include Liquidsoap plugin for prettier
+    - name: prettier
+      files:
+        - typescript
+        - yaml
+        - css
+        - sass
+        - html
+        - markdown
+        - json
+        - javascript
+        - graphql
+        - prettier_supported_configs
+        - liq
+      extra_packages:
+        - liquidsoap-prettier@1.4.10
     # Liquidsoap linting
     - name: liquidsoap
       files: [liq]
@@ -82,7 +98,7 @@ lint:
     # Check for whitespace errors
     - git-diff-check
     # Check for secrets in the code
-    - gitleaks@8.18.0
+    - gitleaks@8.18.1
     # Dockerfile linting
     - hadolint@2.12.0
     # Liquidsoap linting
@@ -100,6 +116,6 @@ lint:
     # Shell formatting
     - shfmt@3.7.0
     # SVG formatting
-    - svgo@3.0.3
+    - svgo@3.0.5
     # YAML linting
     - yamllint@1.33.0

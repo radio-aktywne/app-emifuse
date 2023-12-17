@@ -1,0 +1,3 @@
+plugins:
+  # Enable Liquidsoap plugin
+  - liquidsoap-prettier

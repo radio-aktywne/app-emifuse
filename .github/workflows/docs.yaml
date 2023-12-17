@@ -51,10 +51,10 @@ jobs:
           path: docs/node_modules/
           key: docs-modules
       - name: Install Nix
-        uses: cachix/install-nix-action@v23
+        uses: cachix/install-nix-action@v24
         with:
           github_access_token: ${{ github.token }}
-          install_url: https://releases.nixos.org/nix/nix-2.18.1/install
+          install_url: https://releases.nixos.org/nix/nix-2.19.2/install
       # See: https://github.com/cachix/install-nix-action/issues/56
       - name: Import Nix store cache
         if: steps.cache-nix.outputs.cache-hit == 'true'
@@ -76,7 +76,7 @@ jobs:
           --out-dir
           build/
       - name: Setup Pages
-        uses: actions/configure-pages@v3.0.6
+        uses: actions/configure-pages@v4.0.0
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2.0.0
         with:
@@ -112,4 +112,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2.0.4
+        uses: actions/deploy-pages@v3.0.1

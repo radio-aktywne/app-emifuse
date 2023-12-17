@@ -23,7 +23,7 @@
       // Extensions to install
       "extensions": [
         // Liquidsoap syntax highlighting
-        "vittee.liquidsoap"
+        "savonet.vscode-liquidsoap"
       ]
     }
   }
