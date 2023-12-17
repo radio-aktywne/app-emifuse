@@ -1,5 +1,5 @@
 # Use generic base image with Nix installed
-FROM nixos/nix:2.18.1 AS env
+FROM nixos/nix:2.19.2 AS env
 
 # Configure Nix
 RUN echo "extra-experimental-features = nix-command flakes" >> /etc/nix/nix.conf
