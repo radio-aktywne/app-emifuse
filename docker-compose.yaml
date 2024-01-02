@@ -3,7 +3,6 @@ services:
     build:
       context: ./
       network: host
-    network_mode: host
     environment:
       - "FUSION_HOST=${FUSION_HOST:-0.0.0.0}"
       - "FUSION_PORT=${FUSION_PORT:-9000}"
@@ -12,3 +11,4 @@ services:
       - "FUSION_STREAMCAST_USER=${FUSION_STREAMCAST_USER:-source}"
       - "FUSION_STREAMCAST_PASSWORD=${FUSION_STREAMCAST_PASSWORD:-password}"
       - "FUSION_STREAMCAST_MOUNT=${FUSION_STREAMCAST_MOUNT:-radio.mp3}"
+    network_mode: host
