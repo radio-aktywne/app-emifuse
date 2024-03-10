@@ -68,6 +68,7 @@ in
       ocamlPackages.fileutils
       ocamlPackages.menhirLib
       ocamlPackages.metadata
+      ocamlPackages.magic-mime
       ocamlPackages.dune-build-info
       ocamlPackages.ppx_string
       ocamlPackages.sedlex
@@ -79,7 +80,6 @@ in
       ocamlPackages.flac
       ocamlPackages.lame
       ocamlPackages.mad
-      ocamlPackages.magic
       ocamlPackages.ogg
       ocamlPackages.opus
       ocamlPackages.posix-time2
