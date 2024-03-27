@@ -83,7 +83,10 @@ streamcast_mount = get_env(default="radio.mp3", "FUSION_STREAMCAST_MOUNT")
 music = single(FALLBACK_PATH)
 music = add_metadata(tag_type(type=TYPE_PLAYLIST), music)
 
-live = input.srt(bind_address=host, port=port)
+live =
+  input.srt(
+    bind_address=host, port=port, read_timeout=null(), write_timeout=null()
+  )
 live = add_metadata(tag_type(type=TYPE_LIVE), live)
 live = source(source.tracks(live))
 live = buffer(buffer=LIVE_BUFFER_LENGTH, fallible=true, live)
