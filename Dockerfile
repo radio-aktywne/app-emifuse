@@ -50,4 +50,4 @@ ENTRYPOINT ["/app/scripts/entrypoint.sh", "liquidsoap", "src/main.liq"]
 CMD []
 
 # Setup ownership
-RUN chown -R app: /app/
+RUN chown --recursive app: ./
