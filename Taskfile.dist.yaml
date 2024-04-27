@@ -95,8 +95,8 @@ tasks:
       - >
         npm
         run
-        update
         --
+        update
         {{ .CLI_ARGS }}
   test-docs:
     desc: Test docs
@@ -106,8 +106,8 @@ tasks:
       - >
         npm
         run
-        test
         --
+        test
         {{ .CLI_ARGS }}
   docs:
     desc: Run docusaurus
@@ -118,8 +118,8 @@ tasks:
       - >
         npm
         run
-        docs
         --
+        docs
         {{ .CLI_ARGS | default "start --host 0.0.0.0" }}
   run:
     desc: Run the app
