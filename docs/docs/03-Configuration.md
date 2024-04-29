@@ -7,24 +7,24 @@ title: Configuration
 
 You can configure the app at runtime using various environment variables:
 
-- `FUSION_HOST` -
+- `FUSION__SERVER__HOST` -
   host to listen for live audio
   (default: `0.0.0.0`)
-- `FUSION_PORT` -
+- `FUSION__SERVER__PORT` -
   port to listen for live audio
   (default: `9000`)
-- `FUSION_STREAMCAST_HOST` -
-  host of the `streamcast` app to send audio to
+- `FUSION__STREAMCAST__ICY__HOST` -
+  host of the ICY API of the streamcast service
   (default: `localhost`)
-- `FUSION_STREAMCAST_PORT` -
-  port of the `streamcast` app to send audio to
+- `FUSION__STREAMCAST__ICY__PORT` -
+  port of the ICY API of the streamcast service
   (default: `8000`)
-- `FUSION_STREAMCAST_USER` -
-  user to authenticate with the `streamcast` app
+- `FUSION__STREAMCAST__ICY__USER` -
+  user to authenticate with the ICY API of the streamcast service
   (default: `source`)
-- `FUSION_STREAMCAST_PASSWORD` -
-  password to authenticate with the `streamcast` app
+- `FUSION__STREAMCAST__ICY__PASSWORD` -
+  password to authenticate with the ICY API of the streamcast service
   (default: `password`)
-- `FUSION_STREAMCAST_MOUNT` -
-  mount point of the `streamcast` app to send audio to
+- `FUSION__STREAMCAST__ICY__MOUNT` -
+  mount point of the ICY API of the streamcast service to send the audio to
   (default: `radio.mp3`)

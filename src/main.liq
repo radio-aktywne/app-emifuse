@@ -69,14 +69,16 @@ end
 
 ### Variables
 
-host = get_env(default="0.0.0.0", "FUSION_HOST")
-port = int_of_string(get_env(default="9000", "FUSION_PORT"))
-streamcast_host = get_env(default="localhost", "FUSION_STREAMCAST_HOST")
+host = get_env(default="0.0.0.0", "FUSION__SERVER__HOST")
+port = int_of_string(get_env(default="9000", "FUSION__SERVER__PORT"))
+streamcast_host = get_env(default="localhost", "FUSION__STREAMCAST__ICY__HOST")
 streamcast_port =
-  int_of_string(get_env(default="8000", "FUSION_STREAMCAST_PORT"))
-streamcast_user = get_env(default="source", "FUSION_STREAMCAST_USER")
-streamcast_password = get_env(default="password", "FUSION_STREAMCAST_PASSWORD")
-streamcast_mount = get_env(default="radio.mp3", "FUSION_STREAMCAST_MOUNT")
+  int_of_string(get_env(default="8000", "FUSION__STREAMCAST__ICY__PORT"))
+streamcast_user = get_env(default="source", "FUSION__STREAMCAST__ICY__USER")
+streamcast_password =
+  get_env(default="password", "FUSION__STREAMCAST__ICY__PASSWORD")
+streamcast_mount =
+  get_env(default="radio.mp3", "FUSION__STREAMCAST__ICY__MOUNT")
 
 ### Inputs
 
