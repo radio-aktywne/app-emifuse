@@ -54,8 +54,10 @@ lint:
           run: >-
             liquidsoap
             --check
-            ${target}
+            main.liq
+          run_from: ${target_directory}
           success_codes: [0, 1]
+          target: ${parent_with(main.liq)}
     # Nix formatting check (local)
     - name: nix-fmt-check
       files: [nix]
