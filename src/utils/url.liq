@@ -1,18 +1,22 @@
 let utils.url = {}
 
-def utils.url.build(~scheme="http", ~host, ~port="", ~path="") =
-  path =
-    if
-      path != "" and not string.contains(prefix="/", path)
-    then
-      "/#{path}"
-    else
-      path
-    end
+def utils.url.build(~scheme="http", ~host, ~port=null(), ~path=null()) =
+  pathify =
+    fun (value) ->
+      begin
+        value = string(value)
+        if
+          value == "" or string.contains(prefix="/", value)
+        then
+          value
+        else
+          "/#{value}"
+        end
+      end
 
   url = "#{scheme}://#{host}"
-  url = if port == "" then url else "#{url}:#{port}" end
-  url = if path == "" then url else "#{url}#{path}" end
+  url = port == null() ? url : "#{url}:#{string(port)}"
+  url = path == null() ? url : "#{url}#{pathify(path)}"
 
   url
 end

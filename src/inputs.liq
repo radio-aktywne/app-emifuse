@@ -3,11 +3,8 @@ let inputs = {}
 let inputs.fallback = single(constants.paths.fallback)
 
 let inputs.playlist =
-  if
-    config.emitunes.playlist == ""
-  then
-    sine(duration=0.0)
-  else
+  config.emitunes.playlist == null()
+  ? sine(duration=0.0) :
     playlist(
       prefetch=3,
       loop=true,
@@ -17,7 +14,7 @@ let inputs.playlist =
       timeout=60.0,
       "#{config.emitunes.http.url}/playlists/#{config.emitunes.playlist}/m3u"
     )
-  end
+
 
 let inputs.live =
   buffer(

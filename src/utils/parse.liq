@@ -5,5 +5,5 @@ def utils.parse.int(value) =
 end
 
 def utils.parse.optional_int(value) =
-  if value == "" then null() else utils.parse.int(value) end
+  value == "" ? null() : (utils.parse.int(value))
 end
