@@ -41,8 +41,7 @@
         coreutils = pkgs.coreutils;
         trunk = pkgs.trunk-io;
         copier = pkgs.copier;
-        # Build liquidsoap manually to use the latest version
-        liquidsoap = pkgs.callPackage ./liquidsoap.nix {};
+        liquidsoap = pkgs.liquidsoap;
         ffmpeg = pkgs.ffmpeg;
         tini = pkgs.tini;
         su-exec = pkgs.su-exec;
