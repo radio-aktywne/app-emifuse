@@ -1,9 +1,13 @@
 let utils.metadata = {}
 
 def utils.metadata.filter(keys, source) =
-  predicate = fun (md) -> list.mem(fst(md), keys)
+  def predicate(md) =
+    list.mem(fst(md), keys)
+  end
 
-  metadata.map(
-    update=false, strip=true, fun (md) -> list.filter(predicate, md), source
-  )
+  def filter(md) =
+    list.filter(predicate, md)
+  end
+
+  metadata.map(update=false, strip=true, filter, source)
 end

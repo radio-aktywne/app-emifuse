@@ -13,6 +13,12 @@ You can configure the app at runtime using various environment variables:
 - `FUSION__SERVER__PORT` -
   port to listen for live audio
   (default: `9000`)
+- `FUSION__STATE__STORE__PATH` -
+  path to the file to store the state
+  (default: `data/state.json`)
+- `FUSION__STATE__CACHE__TTL` -
+  how long to cache the state in memory in seconds
+  (default: `60`)
 - `FUSION__STREAMCAST__ICY__HOST` -
   host of the ICY API of the streamcast service
   (default: `localhost`)

@@ -34,8 +34,9 @@ COPY --from=env /env/build/activate /env/activate
 # Set working directory to something other than root
 WORKDIR /app/
 
-# Create app user
-RUN useradd --create-home app
+# Create app user and data directory
+RUN useradd --create-home app && \
+    mkdir --parents data/
 
 # Setup entrypoint for RUN commands
 COPY scripts/shell.sh scripts/shell.sh

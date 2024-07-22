@@ -7,6 +7,9 @@
 .DS_Store
 .todo
 
+# Data
+/data/
+
 # Tracked, but not needed
 /.devcontainer/
 /.github/

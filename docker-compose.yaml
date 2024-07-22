@@ -6,9 +6,16 @@ services:
     environment:
       - "FUSION__SERVER__HOST=${FUSION__SERVER__HOST:-0.0.0.0}"
       - "FUSION__SERVER__PORT=${FUSION__SERVER__PORT:-9000}"
+      - "FUSION__STATE__STORE__PATH=${FUSION__STATE__STORE__PATH:-data/state.json}"
+      - "FUSION__STATE__CACHE__TTL=${FUSION__STATE__CACHE__TTL:-60}"
       - "FUSION__STREAMCAST__ICY__HOST=${FUSION__STREAMCAST__ICY__HOST:-localhost}"
       - "FUSION__STREAMCAST__ICY__PORT=${FUSION__STREAMCAST__ICY__PORT:-8000}"
       - "FUSION__STREAMCAST__ICY__USER=${FUSION__STREAMCAST__ICY__USER:-source}"
       - "FUSION__STREAMCAST__ICY__PASSWORD=${FUSION__STREAMCAST__ICY__PASSWORD:-password}"
       - "FUSION__STREAMCAST__ICY__MOUNT=${FUSION__STREAMCAST__ICY__MOUNT:-radio.mp3}"
     network_mode: host
+    volumes:
+      - data:/app/data/
+
+volumes:
+  data: {}
