@@ -4,6 +4,14 @@ def utils.parse.int(value) =
   int_of_string(value)
 end
 
-def utils.parse.optional_int(value) =
+def utils.parse.oint(value) =
   value == "" ? null() : (utils.parse.int(value))
+end
+
+def utils.parse.float(value) =
+  float_of_string(value)
+end
+
+def utils.parse.ofloat(value) =
+  value == "" ? null() : (utils.parse.float(value))
 end

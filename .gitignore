@@ -9,3 +9,7 @@
 # Misc
 .DS_Store
 .todo
+
+# Data
+/data/*
+!/data/.gitkeep

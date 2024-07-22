@@ -5,7 +5,7 @@ let config.emitunes.http.scheme =
 let config.emitunes.http.host =
   utils.env.safeget(default="localhost", "FUSION__EMITUNES__HTTP__HOST")
 let config.emitunes.http.port =
-  utils.parse.optional_int(
+  utils.parse.oint(
     utils.env.safeget(default="42000", "FUSION__EMITUNES__HTTP__PORT")
   )
 let config.emitunes.http.path = utils.env.get("FUSION__EMITUNES__HTTP__PATH")
