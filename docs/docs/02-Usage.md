@@ -38,3 +38,23 @@ ffmpeg \
     -f ogg \
     srt://127.0.0.1:9000
 ```
+
+## Managing playlists
+
+You can manage currently used playlist using the `/playlist` endpoint.
+You can use the following HTTP methods:
+
+- `GET` to retrieve the current playlist data
+- `PUT` to update the current playlist data
+
+For example, to change the playlist to use a different one,
+you can use [`curl`](https://curl.se)
+to send a `PUT` request to the `/playlist` endpoint:
+
+```sh
+curl \
+    --request PUT \
+    --header "Content-Type: application/json" \
+    --data '{"id": "123e4567-e89b-12d3-a456-426614174000"}' \
+    http://localhost:9001/playlist
+```

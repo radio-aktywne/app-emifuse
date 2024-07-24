@@ -1,6 +1,6 @@
 def state =
   def serialize((value:{playlist: {id: string}?})) =
-    json.stringify(compact=true, value)
+    json.stringify(value)
   end
 
   def deserialize((value:string)) =

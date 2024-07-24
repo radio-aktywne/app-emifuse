@@ -11,6 +11,7 @@ name: Image
     # Run only on changes to relevant files
     paths:
       - .github/workflows/image.yaml
+      - openapi/**
       - scripts/**
       - src/**
       - .dockerignore
@@ -24,6 +25,7 @@ name: Image
     # Run only on changes to relevant files
     paths:
       - .github/workflows/image.yaml
+      - openapi/**
       - scripts/**
       - src/**
       - .dockerignore

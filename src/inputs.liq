@@ -24,9 +24,6 @@ let inputs.playlist =
 let inputs.live =
   buffer(
     input.srt(
-      bind_address=config.server.host,
-      port=config.server.port,
-      read_timeout=null(),
-      write_timeout=null()
+      port=config.server.srt.port, read_timeout=null(), write_timeout=null()
     )
   )

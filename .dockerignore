@@ -10,6 +10,9 @@
 # Data
 /data/
 
+# OpenAPI
+/openapi/schema.html
+
 # Tracked, but not needed
 /.devcontainer/
 /.github/
