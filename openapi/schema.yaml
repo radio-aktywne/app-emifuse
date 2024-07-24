@@ -1,0 +1,89 @@
+info:
+  title: fusion app
+  description: Audio streaming with Liquidsoap 🧼
+openapi: 3.1.0
+servers:
+  - url: /
+paths:
+  /ping:
+    get:
+      summary: Ping
+      description: Do nothing.
+      responses:
+        "204":
+          description: Request fulfilled, nothing follows
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache
+  /playlist:
+    get:
+      summary: Get playlist data
+      description: Get the current playlist data.
+      responses:
+        "200":
+          description: Request fulfilled, document follows
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetPlaylistResponse"
+        "404":
+          description: Request failed, resource not found
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Playlist data not found.
+    put:
+      summary: Update playlist data
+      description: Update the current playlist data.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PutPlaylistRequest"
+      responses:
+        "200":
+          description: Request fulfilled, document follows
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PutPlaylistResponse"
+        "400":
+          description: Bad request syntax
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Request body is not a valid JSON object.
+components:
+  schemas:
+    GetPlaylistResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+      required:
+        - id
+    PutPlaylistRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+      required:
+        - id
+    PutPlaylistResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+      required:
+        - id
