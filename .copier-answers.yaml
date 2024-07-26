@@ -2,13 +2,13 @@
 _commit: 0.5.0
 _src_path: gh:radio-aktywne/template-app-liquidsoap
 accountname: radio-aktywne
-appname: fusion
+appname: emifuse
 description: Audio streaming with Liquidsoap 🧼
 docs: true
-docsurl: https://radio-aktywne.github.io/app-fusion
-envprefix: FUSION
-imagename: apps/fusion
+docsurl: https://radio-aktywne.github.io/app-emifuse
+envprefix: EMIFUSE
+imagename: apps/emifuse
 registry: true
 releases: true
-reponame: app-fusion
-repourl: https://github.com/radio-aktywne/app-fusion
+reponame: app-emifuse
+repourl: https://github.com/radio-aktywne/app-emifuse

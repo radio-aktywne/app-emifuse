@@ -1,5 +1,5 @@
 info:
-  title: fusion app
+  title: emifuse app
   description: Audio streaming with Liquidsoap 🧼
 openapi: 3.1.0
 servers:
