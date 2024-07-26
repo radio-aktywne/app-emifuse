@@ -20,6 +20,8 @@ jobs:
       # Needed to push to registry
       packages: write
     steps:
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@v1.3.1
       - name: Checkout code
         uses: actions/checkout@v4.1.1
       - name: Set up Docker Buildx
