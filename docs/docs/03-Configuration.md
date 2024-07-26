@@ -19,20 +19,20 @@ You can configure the app at runtime using various environment variables:
 - `FUSION__STATE__CACHE__TTL` -
   how long to cache the state in memory in seconds
   (default: `60`)
-- `FUSION__STREAMCAST__ICY__HOST` -
-  host of the ICY API of the streamcast service
+- `FUSION__EMICAST__ICY__HOST` -
+  host of the ICY API of the emicast service
   (default: `localhost`)
-- `FUSION__STREAMCAST__ICY__PORT` -
-  port of the ICY API of the streamcast service
+- `FUSION__EMICAST__ICY__PORT` -
+  port of the ICY API of the emicast service
   (default: `8000`)
-- `FUSION__STREAMCAST__ICY__USER` -
-  user to authenticate with the ICY API of the streamcast service
+- `FUSION__EMICAST__ICY__USER` -
+  user to authenticate with the ICY API of the emicast service
   (default: `source`)
-- `FUSION__STREAMCAST__ICY__PASSWORD` -
-  password to authenticate with the ICY API of the streamcast service
+- `FUSION__EMICAST__ICY__PASSWORD` -
+  password to authenticate with the ICY API of the emicast service
   (default: `password`)
-- `FUSION__STREAMCAST__ICY__MOUNT` -
-  mount point of the ICY API of the streamcast service to send the audio to
+- `FUSION__EMICAST__ICY__MOUNT` -
+  mount point of the ICY API of the emicast service to send the audio to
   (default: `radio.mp3`)
 - `FUSION__EMITUNES__HTTP__SCHEME` -
   scheme of the HTTP API of the emitunes service
