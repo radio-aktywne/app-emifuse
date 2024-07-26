@@ -2,10 +2,10 @@ import type * as Preset from "@docusaurus/preset-classic";
 import type { Config } from "@docusaurus/types";
 import { themes } from "prism-react-renderer";
 
-const url = new URL("https://radio-aktywne.github.io/app-fusion");
+const url = new URL("https://radio-aktywne.github.io/app-emifuse");
 
 const config: Config = {
-  title: "fusion app docs",
+  title: "emifusee app docs",
   favicon: "favicon.svg?v=1",
 
   url: `${url.protocol}//${url.host}`,
@@ -41,14 +41,14 @@ const config: Config = {
 
   themeConfig: {
     navbar: {
-      title: "fusion app docs",
+      title: "emifusee app docs",
       logo: {
-        alt: "fusion app docs logo",
+        alt: "emifusee app docs logo",
         src: "logo.svg?v=1",
       },
       items: [
         {
-          href: "https://github.com/radio-aktywne/app-fusion",
+          href: "https://github.com/radio-aktywne/app-emifusee",
           position: "right",
           className: "header-github-link",
           "aria-label": "GitHub repository",
