@@ -6,7 +6,7 @@ let config.pelican.http.host =
   utils.env.safeget(default="localhost", "DINGO__PELICAN__HTTP__HOST")
 let config.pelican.http.port =
   utils.parse.oint(
-    utils.env.safeget(default="42000", "DINGO__PELICAN__HTTP__PORT")
+    utils.env.safeget(default="10200", "DINGO__PELICAN__HTTP__PORT")
   )
 let config.pelican.http.path = utils.env.get("DINGO__PELICAN__HTTP__PATH")
 let config.pelican.http.url =
