@@ -5,8 +5,8 @@
 . /env/activate
 
 # Set permissions
-chown --recursive app: data/
+chown --recursive service: data/
 
 # Run as non-root user
 # Use tini to handle signals
-exec su-exec app tini -- "$@"
+exec su-exec service tini -- "$@"

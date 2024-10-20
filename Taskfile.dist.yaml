@@ -122,7 +122,7 @@ tasks:
         docs
         {{ .CLI_ARGS | default "start --host 0.0.0.0" }}
   run:
-    desc: Run the app
+    desc: Run the service
     interactive: true
     cmds:
       - >

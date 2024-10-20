@@ -3,12 +3,11 @@ slug: /
 title: Index
 ---
 
-# emifuse app
+# emifuse
 
-Audio streaming with Liquidsoap 🧼
+Broadcast composing 🧼
 
 ## 💡 About
 
 `emifuse` is a [`Liquidsoap`](https://www.liquidsoap.info)
-server that fuses music from playlists and live audio
-and sends one output stream to broadcast servers.
+service for composing broadcast streams.

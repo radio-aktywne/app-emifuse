@@ -1,6 +1,6 @@
 info:
-  title: emifuse app
-  description: Audio streaming with Liquidsoap 🧼
+  title: emifuse
+  description: Broadcast composing 🧼
 openapi: 3.1.0
 servers:
   - url: /
