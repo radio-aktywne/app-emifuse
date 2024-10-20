@@ -21,7 +21,7 @@ For example, you can use [`Liquidsoap`](https://www.liquidsoap.info) for that:
 liquidsoap \
     'output.srt(
         host="127.0.0.1",
-        port=9000,
+        port=10100,
         %ogg(%opus),
         sine()
     )'
@@ -36,7 +36,7 @@ ffmpeg \
     -i sine \
     -c libopus \
     -f ogg \
-    srt://127.0.0.1:9000
+    srt://127.0.0.1:10100
 ```
 
 ## Managing playlists
@@ -56,5 +56,5 @@ curl \
     --request PUT \
     --header "Content-Type: application/json" \
     --data '{"id": "123e4567-e89b-12d3-a456-426614174000"}' \
-    http://localhost:9001/playlist
+    http://localhost:10101/playlist
 ```

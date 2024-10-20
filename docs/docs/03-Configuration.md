@@ -9,10 +9,10 @@ You can configure the service at runtime using various environment variables:
 
 - `DINGO__SERVER__SRT__PORT`
   port to listen for SRT connections
-  (default: `9000`)
+  (default: `10100`)
 - `DINGO__SERVER__HTTP__PORT` -
   port to listen for HTTP connections
-  (default: `9001`)
+  (default: `10101`)
 - `DINGO__STATE__STORE__PATH` -
   path to the file to store the state
   (default: `data/state.json`)
@@ -27,7 +27,7 @@ You can configure the service at runtime using various environment variables:
   (default: `localhost`)
 - `DINGO__PELICAN__HTTP__PORT` -
   port of the HTTP API of the pelican service
-  (default: `42000`)
+  (default: `10200`)
 - `DINGO__PELICAN__HTTP__PATH` -
   path of the HTTP API of the pelican service
   (default: ``)
@@ -36,7 +36,7 @@ You can configure the service at runtime using various environment variables:
   (default: `localhost`)
 - `DINGO__QUOKKA__ICY__PORT` -
   port of the ICY API of the quokka service
-  (default: `8000`)
+  (default: `10000`)
 - `DINGO__QUOKKA__ICY__USER` -
   user to authenticate with the ICY API of the quokka service
   (default: `source`)
