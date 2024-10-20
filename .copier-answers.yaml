@@ -1,14 +1,14 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: 0.5.0
-_src_path: gh:radio-aktywne/template-app-liquidsoap
+_commit: 0.6.0
+_src_path: gh:radio-aktywne/template-service-liquidsoap
 accountname: radio-aktywne
-appname: emifuse
-description: Audio streaming with Liquidsoap 🧼
+description: Broadcast composing 🧼
 docs: true
-docsurl: https://radio-aktywne.github.io/app-emifuse
+docsurl: https://radio-aktywne.github.io/emifuse
 envprefix: EMIFUSE
-imagename: apps/emifuse
+imagename: services/emifuse
 registry: true
 releases: true
-reponame: app-emifuse
-repourl: https://github.com/radio-aktywne/app-emifuse
+reponame: emifuse
+repourl: https://github.com/radio-aktywne/emifuse
+servicename: emifuse

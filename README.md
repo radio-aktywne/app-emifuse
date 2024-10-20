@@ -1,13 +1,13 @@
-<h1 align="center">emifuse app</h1>
+<h1 align="center">emifuse</h1>
 
 <div align="center">
 
-Audio streaming with Liquidsoap 🧼
+Broadcast composing 🧼
 
-[![Lint](https://github.com/radio-aktywne/app-emifuse/actions/workflows/lint.yaml/badge.svg)](https://github.com/radio-aktywne/app-emifuse/actions/workflows/lint.yaml)
-[![Image](https://github.com/radio-aktywne/app-emifuse/actions/workflows/image.yaml/badge.svg)](https://github.com/radio-aktywne/app-emifuse/actions/workflows/image.yaml)
-[![Registry](https://github.com/radio-aktywne/app-emifuse/actions/workflows/registry.yaml/badge.svg)](https://github.com/radio-aktywne/app-emifuse/actions/workflows/registry.yaml)
-[![Docs](https://github.com/radio-aktywne/app-emifuse/actions/workflows/docs.yaml/badge.svg)](https://github.com/radio-aktywne/app-emifuse/actions/workflows/docs.yaml)
+[![Lint](https://github.com/radio-aktywne/emifuse/actions/workflows/lint.yaml/badge.svg)](https://github.com/radio-aktywne/emifuse/actions/workflows/lint.yaml)
+[![Image](https://github.com/radio-aktywne/emifuse/actions/workflows/image.yaml/badge.svg)](https://github.com/radio-aktywne/emifuse/actions/workflows/image.yaml)
+[![Registry](https://github.com/radio-aktywne/emifuse/actions/workflows/registry.yaml/badge.svg)](https://github.com/radio-aktywne/emifuse/actions/workflows/registry.yaml)
+[![Docs](https://github.com/radio-aktywne/emifuse/actions/workflows/docs.yaml/badge.svg)](https://github.com/radio-aktywne/emifuse/actions/workflows/docs.yaml)
 
 </div>
 
@@ -16,15 +16,14 @@ Audio streaming with Liquidsoap 🧼
 ## 💡 About
 
 `emifuse` is a [`Liquidsoap`](https://www.liquidsoap.info)
-server that fuses music from playlists and live audio
-and sends one output stream to broadcast servers.
+service for composing broadcast streams.
 
 ## 📄 Further Reading
 
 More in-depth documentation can be found
-[here](https://radio-aktywne.github.io/app-emifuse).
+[here](https://radio-aktywne.github.io/emifuse).
 
 ## 💻 Development
 
 Read more about how to develop the project
-[here](https://github.com/radio-aktywne/app-emifuse/blob/main/CONTRIBUTING.md).
+[here](https://github.com/radio-aktywne/emifuse/blob/main/CONTRIBUTING.md).

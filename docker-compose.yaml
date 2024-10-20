@@ -19,7 +19,7 @@ services:
       - "EMIFUSE__EMITUNES__HTTP__PATH=${EMIFUSE__EMITUNES__HTTP__PATH:-}"
     network_mode: host
     volumes:
-      - data:/app/data/
+      - data:/service/data/
 
 volumes:
   data: {}

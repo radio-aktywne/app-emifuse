@@ -5,7 +5,7 @@ title: Configuration
 
 ## Environment variables
 
-You can configure the app at runtime using various environment variables:
+You can configure the service at runtime using various environment variables:
 
 - `EMIFUSE__SERVER__SRT__PORT`
   port to listen for SRT connections
