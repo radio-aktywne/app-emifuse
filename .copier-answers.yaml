@@ -4,11 +4,11 @@ _src_path: gh:radio-aktywne/template-service-liquidsoap
 accountname: radio-aktywne
 description: Broadcast composing 🧼
 docs: true
-docsurl: https://radio-aktywne.github.io/emifuse
-envprefix: EMIFUSE
-imagename: services/emifuse
+docsurl: https://radio-aktywne.github.io/dingo
+envprefix: DINGO
+imagename: services/dingo
 registry: true
 releases: true
-reponame: emifuse
-repourl: https://github.com/radio-aktywne/emifuse
-servicename: emifuse
+reponame: dingo
+repourl: https://github.com/radio-aktywne/dingo
+servicename: dingo
