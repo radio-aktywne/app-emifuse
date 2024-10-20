@@ -16,7 +16,7 @@ let inputs.playlist =
             reload=60,
             reload_mode="seconds",
             timeout=60.0,
-            "#{config.emitunes.http.url}/playlists/#{p.id}/m3u"
+            "#{config.pelican.http.url}/playlists/#{p.id}/m3u"
           )
       )
   )

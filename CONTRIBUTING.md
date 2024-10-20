@@ -11,13 +11,13 @@ The whole development environment will be running inside a container.
 If you open the project in `Visual Studio Code`,
 you should be prompted to reopen the project in a `Dev Container`.
 You can also click
-[here](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/radio-aktywne/emifuse)
+[here](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/radio-aktywne/dingo)
 or on the badge below to tell `Visual Studio Code`
 to open the project in a `Dev Container`.
 
 <div align="center">
 
-[![Open in Dev Container](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/radio-aktywne/emifuse)
+[![Open in Dev Container](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/radio-aktywne/dingo)
 
 </div>
 
@@ -100,7 +100,7 @@ Here are the most common ones, using `Task`:
 
 Linting is automatically run on every pull request and push to the `main` branch.
 You can find the `GitHub Actions` workflow that does this in
-[`.github/workflows/lint.yaml`](https://github.com/radio-aktywne/emifuse/blob/main/.github/workflows/lint.yaml).
+[`.github/workflows/lint.yaml`](https://github.com/radio-aktywne/dingo/blob/main/.github/workflows/lint.yaml).
 
 If you use the `Dev Container` setup,
 you will have the `Trunk` extension installed in `Visual Studio Code`.
@@ -133,13 +133,13 @@ Every time you create a new release on `GitHub`,
 a `GitHub Actions` workflow will automatically build and publish a new `Docker` image
 to the `GitHub Container Registry`.
 You can find the `GitHub Actions` workflow that does this in
-[`.github/workflows/registry.yaml`](https://github.com/radio-aktywne/emifuse/blob/main/.github/workflows/registry.yaml).
+[`.github/workflows/registry.yaml`](https://github.com/radio-aktywne/dingo/blob/main/.github/workflows/registry.yaml).
 
 ## 📄 Docs
 
 This project uses [`Docusaurus`](https://docusaurus.io) to generate documentation.
 The documentation is hosted on `GitHub Pages` and can be found
-[here](https://radio-aktywne.github.io/emifuse).
+[here](https://radio-aktywne.github.io/dingo).
 All the documentation files are located in the `docs` directory.
 
 To build and serve the documentation locally,
@@ -154,4 +154,4 @@ This will start a local server that will serve the documentation.
 The documentation is automatically built and deployed to `GitHub Pages`
 whenever a commit is pushed to the `main` branch.
 You can find the `GitHub Actions` workflow that does this in
-[`.github/workflows/docs.yaml`](https://github.com/radio-aktywne/emifuse/blob/main/.github/workflows/docs.yaml).
+[`.github/workflows/docs.yaml`](https://github.com/radio-aktywne/dingo/blob/main/.github/workflows/docs.yaml).

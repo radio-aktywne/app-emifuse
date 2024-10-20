@@ -3,11 +3,11 @@ slug: /
 title: Index
 ---
 
-# emifuse
+# dingo
 
 Broadcast composing 🧼
 
 ## 💡 About
 
-`emifuse` is a [`Liquidsoap`](https://www.liquidsoap.info)
+`dingo` is a [`Liquidsoap`](https://www.liquidsoap.info)
 service for composing broadcast streams.

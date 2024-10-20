@@ -1,5 +1,5 @@
 ---
-slug: /configuration
+slug: /config
 title: Configuration
 ---
 
@@ -7,42 +7,42 @@ title: Configuration
 
 You can configure the service at runtime using various environment variables:
 
-- `EMIFUSE__SERVER__SRT__PORT`
+- `DINGO__SERVER__SRT__PORT`
   port to listen for SRT connections
   (default: `9000`)
-- `EMIFUSE__SERVER__HTTP__PORT` -
+- `DINGO__SERVER__HTTP__PORT` -
   port to listen for HTTP connections
   (default: `9001`)
-- `EMIFUSE__STATE__STORE__PATH` -
+- `DINGO__STATE__STORE__PATH` -
   path to the file to store the state
   (default: `data/state.json`)
-- `EMIFUSE__STATE__CACHE__TTL` -
+- `DINGO__STATE__CACHE__TTL` -
   how long to cache the state in memory in seconds
   (default: `60`)
-- `EMIFUSE__EMICAST__ICY__HOST` -
-  host of the ICY API of the emicast service
-  (default: `localhost`)
-- `EMIFUSE__EMICAST__ICY__PORT` -
-  port of the ICY API of the emicast service
-  (default: `8000`)
-- `EMIFUSE__EMICAST__ICY__USER` -
-  user to authenticate with the ICY API of the emicast service
-  (default: `source`)
-- `EMIFUSE__EMICAST__ICY__PASSWORD` -
-  password to authenticate with the ICY API of the emicast service
-  (default: `password`)
-- `EMIFUSE__EMICAST__ICY__MOUNT` -
-  mount point of the ICY API of the emicast service to send the audio to
-  (default: `radio.mp3`)
-- `EMIFUSE__EMITUNES__HTTP__SCHEME` -
-  scheme of the HTTP API of the emitunes service
+- `DINGO__PELICAN__HTTP__SCHEME` -
+  scheme of the HTTP API of the pelican service
   (default: `http`)
-- `EMIFUSE__EMITUNES__HTTP__HOST` -
-  host of the HTTP API of the emitunes service
+- `DINGO__PELICAN__HTTP__HOST` -
+  host of the HTTP API of the pelican service
   (default: `localhost`)
-- `EMIFUSE__EMITUNES__HTTP__PORT` -
-  port of the HTTP API of the emitunes service
+- `DINGO__PELICAN__HTTP__PORT` -
+  port of the HTTP API of the pelican service
   (default: `42000`)
-- `EMIFUSE__EMITUNES__HTTP__PATH` -
-  path of the HTTP API of the emitunes service
+- `DINGO__PELICAN__HTTP__PATH` -
+  path of the HTTP API of the pelican service
   (default: ``)
+- `DINGO__QUOKKA__ICY__HOST` -
+  host of the ICY API of the quokka service
+  (default: `localhost`)
+- `DINGO__QUOKKA__ICY__PORT` -
+  port of the ICY API of the quokka service
+  (default: `8000`)
+- `DINGO__QUOKKA__ICY__USER` -
+  user to authenticate with the ICY API of the quokka service
+  (default: `source`)
+- `DINGO__QUOKKA__ICY__PASSWORD` -
+  password to authenticate with the ICY API of the quokka service
+  (default: `password`)
+- `DINGO__QUOKKA__ICY__MOUNT` -
+  mount point of the ICY API of the quokka service to send the audio to
+  (default: `radio.mp3`)

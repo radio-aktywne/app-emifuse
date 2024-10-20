@@ -1,10 +1,10 @@
 output.icecast(
   %mp3,
-  host=config.emicast.icy.host,
-  port=config.emicast.icy.port,
-  user=config.emicast.icy.user,
-  password=config.emicast.icy.password,
-  mount=config.emicast.icy.mount,
+  host=config.quokka.icy.host,
+  port=config.quokka.icy.port,
+  user=config.quokka.icy.user,
+  password=config.quokka.icy.password,
+  mount=config.quokka.icy.mount,
   icy_metadata=constants.metadata.keys,
   icy_song=fun (_) -> null(),
   streams.radio
